@@ -1,3 +1,7 @@
+:root{
+  --fundo-vermelho: ;
+}
+
 /* Estilo geral */
 * {
     margin: 0;
@@ -48,7 +52,7 @@
   
   /* Estilo do corpo principal */
   .main-body {
-    background-image: url(../images/bg.svg);
+    background-image: url(../images/bg.png);
     background-size: cover;
     background-position: center 15%;
     gap: 3rem;
@@ -143,8 +147,9 @@
     height: 500px;
     border-radius: 6%;
     background-color: lightgray;
+    z-index: -1;
   }
-  
+
   /* Botões de controle */
   #Iniciar, #Pausar, #Resetar {
     color: white;
@@ -157,6 +162,34 @@
     transform: translate(-50%, -50%);
   }
   
+  .b25, .b10, .b5 {
+    color: white;
+    border: none;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: -4.9%;
+    border-top-left-radius: 25%;
+    border-top-right-radius: 25%;
+    transform: translate(-50%, -50%);
+  }
+
+  .b25{
+    background-color: lightgray;
+    left: 20%;
+  }
+
+  .b10{
+    background-color: lightgray;
+    left: 80%;
+  }
+
+  .b5{
+    background-color: lightgray;
+    left: 50%;
+  }
+
   #Iniciar {
     background-color: rgb(28, 158, 16);
     left: 20%;
@@ -183,4 +216,9 @@
   
   #Resetar:hover {
     background-color: rgb(5, 5, 118);
+  }
+
+  .dimmer{
+    background-color: rgb(120, 119, 119);
+    z-index: 2;
   }
