@@ -1,16 +1,18 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Tempos iniciais em segundos
+    const taskForm = document.getElementById('task-form');
+    const taskList = document.getElementById('task-list');
+    
     const tempos = {
-        pomo: 25 * 60,  // 25 minutos
-        long: 10 * 60,  // 10 minutos
-        rest: 5 * 60    // 5 minutos
+        pomo: 25 * 60,
+        long: 10 * 60,
+        rest: 5 * 60
     };
 
-    let tempo = tempos.pomo; // Tempo inicial (Pomodoro)
+    let tempo = tempos.pomo;
     let intervalo;
     let timerAtivo = false;
+    let tasks = [];
 
-    // Elementos do DOM
     const relogio = document.getElementById('relogio');
     const iniciar = document.getElementById('Iniciar');
     const pausar = document.getElementById('Pausar');
@@ -18,20 +20,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const pomo = document.getElementById('pomo');
     const long = document.getElementById('long');
     const rest = document.getElementById('rest');
+    const body = document.body;
 
-    // Função que formata o tempo em mm:ss
+    const images = [
+        'path/to/image1.png',
+        'path/to/image2.png',
+        'path/to/image3.png'
+    ];
+
     const formatarTempo = (segundos) => {
         const minutos = Math.floor(segundos / 60);
         const segundosRestantes = segundos % 60;
         return `${minutos.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
     };
 
-    // Atualiza relógio com o tempo formatado
     const atualizarTimer = () => {
         relogio.textContent = formatarTempo(tempo);
     };
 
-    // Função que reduz o tempo
     const reduzirTempo = () => {
         if (tempo > 0) {
             tempo--;
@@ -42,7 +48,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     };
 
-    // Função para iniciar o tempo
     const iniciarTempo = () => {
         if (!timerAtivo) {
             timerAtivo = true;
@@ -50,7 +55,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     };
 
-    // Função para pausar o tempo
     const pausarTempo = () => {
         if (timerAtivo) {
             timerAtivo = false;
@@ -58,20 +62,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     };
 
-    // Função para resetar o tempo
     const resetarTempo = () => {
         pausarTempo();
         if (!pomo.classList.contains('dimmer')) {
-            tempo = tempos.pomo; // Pomodoro
+            tempo = tempos.pomo;
         } else if (!long.classList.contains('dimmer')) {
-            tempo = tempos.long; // Long Break
+            tempo = tempos.long;
         } else if (!rest.classList.contains('dimmer')) {
-            tempo = tempos.rest; // Short Break
+            tempo = tempos.rest;
         }
         atualizarTimer();
     };
 
-    // Função para escurecer os botões não clicados
     const escurecerBotoes = (botaoAtivo) => {
         const botoes = [pomo, long, rest];
         botoes.forEach(botao => {
@@ -83,33 +85,94 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     };
 
-    // Eventos que escutam o clique dos botões
+    const mudarCorDeFundo = (cor) => {
+        body.style.backgroundColor = cor;
+    };
+
     iniciar.addEventListener('click', iniciarTempo);
     pausar.addEventListener('click', pausarTempo);
     resetar.addEventListener('click', resetarTempo);
 
-    // Eventos para os botões de tempo Pomodoro, Long e Rest
     pomo.addEventListener('click', () => {
-        tempo = tempos.pomo; // 25 minutos
-        atualizarTimer();
+        tempo = tempos.pomo;
         escurecerBotoes(pomo);
-        resetarTempo(pomo)
+        mudarCorDeFundo('#C55B9D');
+        resetarTempo();
     });
 
     long.addEventListener('click', () => {
-        tempo = tempos.long; // 10 minutos
-        atualizarTimer();
+        tempo = tempos.long;
         escurecerBotoes(long);
-        resetarTempo(long)
+        mudarCorDeFundo('#4E3F91');
+        resetarTempo();
     });
 
     rest.addEventListener('click', () => {
-        tempo = tempos.rest; // 5 minutos
-        atualizarTimer();
+        tempo = tempos.rest;
         escurecerBotoes(rest);
-        resetarTempo(rest)
+        mudarCorDeFundo('#6495CB');
+        resetarTempo();
     });
 
-    // Inicializar o timer na página
+    function getRandomImage() {
+        const imagerand = Math.floor(Math.random() * images.length);
+        return images[imagerand];
+    }
+
+    function renderTasks() {
+        taskList.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
+            taskItem.style.backgroundImage = `url(${task.image})`;
+
+            taskItem.innerHTML = `
+                <p ${task.completed ? 'class="completed"' : ''}>${task.title}: ${task.desc}</p>
+                <div>
+                    <button class="edit-btn" onclick="editTask(${index})">Editar</button>
+                    <button onclick="deleteTask(${index})">Excluir</button>
+                    <button class="complete-btn" onclick="toggleComplete(${index})">${task.completed ? 'Desmarcar' : 'Completar'}</button>
+                </div>
+            `;
+            taskList.appendChild(taskItem);
+        });
+    }
+
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('task-title').value;
+        const desc = document.getElementById('task-desc').value;
+
+        if (title && desc) {
+            tasks.push({
+                title,
+                desc,
+                completed: false,
+                image: getRandomImage()
+            });
+            renderTasks();
+            taskForm.reset();
+        }
+    });
+
+    window.editTask = function(index) {
+        const task = tasks[index];
+        document.getElementById('task-title').value = task.title;
+        document.getElementById('task-desc').value = task.desc;
+        tasks.splice(index, 1); // Remove a tarefa para edição
+        renderTasks();
+    };
+
+    window.deleteTask = function(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    };
+
+    window.toggleComplete = function(index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+    };
+
     atualizarTimer();
 });

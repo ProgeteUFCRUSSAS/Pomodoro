@@ -52,9 +52,9 @@
   
   /* Estilo do corpo principal */
   .main-body {
-    background-image: url(../images/bg.png);
+    background-color: #C55B9D;
     background-size: cover;
-    background-position: center 15%;
+    background-position: center 13%;
     gap: 3rem;
   }
   
@@ -121,11 +121,11 @@
   /* Relógio Pomodoro */
   .relogio {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
-    background-color: tomato;
+    background-color: #ffffff00;
     width: 200px;
     height: 200px;
     display: flex;
@@ -133,7 +133,6 @@
     align-items: center;
     font-size: 5rem;
     color: white;
-    border-radius: 100%;
   }
   
   /* Container do timer */
@@ -143,16 +142,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
-    width: 450px;
-    height: 500px;
-    border-radius: 6%;
-    background-color: lightgray;
-    z-index: -1;
+    width: 650px;
+    height: 400px;
+    background-color: #ffffff8e;
+    z-index: 0;
   }
 
   /* Botões de controle */
   #Iniciar, #Pausar, #Resetar {
-    color: white;
+    color: #7047C5
+    ;
     border: none;
     width: 100px;
     height: 50px;
@@ -163,62 +162,213 @@
   }
   
   .b25, .b10, .b5 {
-    color: white;
+    color: #7047C5;
+    background-color: white;
     border: none;
     width: 100px;
     height: 50px;
     cursor: pointer;
     position: absolute;
-    top: -4.9%;
-    border-top-left-radius: 25%;
-    border-top-right-radius: 25%;
     transform: translate(-50%, -50%);
+    top: 25%;
+    box-shadow: 0 9px #999;
   }
 
   .b25{
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     left: 20%;
+    font-size: 15px;
   }
 
   .b10{
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     left: 80%;
+    justify-content: center;
+    font-size: 12px;
   }
 
   .b5{
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     left: 50%;
+    font-size: 15px;
   }
 
   #Iniciar {
-    background-color: rgb(28, 158, 16);
+    background-color: white;
     left: 20%;
   }
   
   #Pausar {
-    background-color: rgb(224, 0, 0);
+    background-color: white;
     left: 50%;
   }
   
   #Resetar {
-    background-color: rgb(6, 6, 160);
+    background-color: white;
     left: 80%;
   }
   
   /* Efeito hover nos botões */
   #Iniciar:hover {
-    background: rgb(10, 143, 10);
+    background: rgb(167, 167, 167);
   }
   
   #Pausar:hover {
-    background-color: rgb(178, 4, 4);
+    background-color: rgb(167, 167, 167);
   }
   
   #Resetar:hover {
-    background-color: rgb(5, 5, 118);
+    background-color: rgb(167, 167, 167);
   }
 
   .dimmer{
-    background-color: rgb(120, 119, 119);
+    background-color: rgb(167, 167, 167);
     z-index: 2;
   }
+
+  .tasks {
+    position: absolute;
+    top: 100%;
+    gap: 25px;
+    left: 25%;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título Principal */
+h1 {
+    text-align: center;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Formulário de Entrada */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+textarea {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+btn:active{
+  box-shadow: 0 5px #999;
+  transform: translateY(5px);
+
+}
+
+/* Lista de Tarefas */
+#task-list {
+    margin-top: 30px;
+}
+
+.task-item {
+    width: 100%;
+    margin-top: 20px;
+    max-width: 900px; /* Ajuste conforme necessário */
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.task-item p {
+    margin: 0;
+    word-wrap: break-word;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+
+.task-item:hover {
+    background-color: #f1f3f5;
+}
+
+/* Botões de Ação */
+.task-item button {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+    margin-top: 25px;
+}
+
+.complt-button{
+    background-color: #522525;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+    margin-top: 25px;
+}
+
+.task-item button:hover {
+    background-color: #c82333;
+}
+
+/* Botão Editar */
+.task-item button.edit-btn {
+    background-color: #ffc107;
+}
+
+.task-item button.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+/* Botão de Marcar como Concluída */
+.task-item button.complete-btn {
+    background-color: #28a745;
+}
+
+.task-item button.complete-btn:hover {
+    background-color: #218838;
+}
+
+/* Estilo para Tarefa Concluída */
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
