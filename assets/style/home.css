@@ -16,6 +16,7 @@
   body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.6rem; /* 16px */
+    height: 200%;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -142,7 +143,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
-    width: 650px;
+    width: 50%;
     height: 400px;
     background-color: #ffffff8e;
     z-index: 0;
@@ -229,12 +230,11 @@
   .tasks {
     position: absolute;
     top: 100%;
-    gap: 25px;
     left: 25%;
-    width: 80%;
+    width: 50%;
     max-width: 800px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff88;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -305,6 +305,11 @@ btn:active{
     padding: 10px;
     box-sizing: border-box;
     overflow-wrap: break-word;
+}
+
+.task-desc{
+  width: 100%;
+  max-width: 100%;
 }
 
 .task-item p {
