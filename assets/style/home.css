@@ -133,26 +133,25 @@
     justify-content: center;
     align-items: center;
     font-size: 5rem;
-    color: white;
+    color: rgb(255, 255, 255);
   }
   
   /* Container do timer */
   .timer {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
     width: 50%;
     height: 400px;
-    background-color: #ffffff8e;
+    background-color: #ffffff1b;
     z-index: 0;
   }
 
   /* Botões de controle */
   #Iniciar, #Pausar, #Resetar {
-    color: #7047C5
-    ;
+    color: #7047C5;
     border: none;
     width: 100px;
     height: 50px;
@@ -163,8 +162,7 @@
   }
   
   .b25, .b10, .b5 {
-    color: #7047C5;
-    background-color: white;
+    color: #ffffff;
     border: none;
     width: 100px;
     height: 50px;
@@ -172,24 +170,20 @@
     position: absolute;
     transform: translate(-50%, -50%);
     top: 25%;
-    box-shadow: 0 9px #999;
   }
 
   .b25{
-    background-color: rgb(255, 255, 255);
-    left: 20%;
+    left: 35%;
     font-size: 15px;
   }
 
   .b10{
-    background-color: rgb(255, 255, 255);
-    left: 80%;
+    left: 65%;
     justify-content: center;
     font-size: 12px;
   }
 
   .b5{
-    background-color: rgb(255, 255, 255);
     left: 50%;
     font-size: 15px;
   }
@@ -207,6 +201,22 @@
   #Resetar {
     background-color: white;
     left: 80%;
+  }
+
+    /* Botão ativo */
+  .dimmer {
+    background-color: rgb(255, 255, 255); /* Ou qualquer cor que você deseja para o botão ativo */
+  }
+
+  /* Botão não ativo */
+  .transparent {
+    background-color: transparent; /* Certifique-se de que o fundo é transparente */
+    border: 1px solid transparent; /* Se o botão tem uma borda, garanta que seja transparente */
+  }
+
+  /* Remova estilos de foco padrão para não interferir */
+  button:focus {
+    outline: none;
   }
   
   /* Efeito hover nos botões */
@@ -228,7 +238,9 @@
   }
 
   .tasks {
-    position: absolute;
+    position: relative;
+    margin-top: 600px;
+    margin-bottom: 50px;
     top: 100%;
     left: 25%;
     width: 50%;
@@ -274,7 +286,6 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -376,4 +387,10 @@ btn:active{
 .completed {
     text-decoration: line-through;
     color: #888;
+}
+
+footer{
+  background-color: #c2c2c2;
+  margin-top: 5%;
+  height: 6/0px;
 }

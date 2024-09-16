@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const taskForm = document.getElementById('task-form');
     const taskList = document.getElementById('task-list');
-    
+
     const tempos = {
-        pomo: 25 * 60,
-        long: 10 * 60,
-        rest: 5 * 60
+        pomo: 25 * 60,  // Tempo para Pomodoro
+        long: 10 * 60,  // Tempo para Pausa Longa
+        rest: 5 * 60    // Tempo para Pausa Curta
     };
 
     let tempo = tempos.pomo;
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const pomo = document.getElementById('pomo');
     const long = document.getElementById('long');
     const rest = document.getElementById('rest');
+    const audio = document.getElementById('audio');
     const body = document.body;
 
     const images = [
@@ -43,8 +44,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             tempo--;
             atualizarTimer();
         } else {
+            audio.play();
             clearInterval(intervalo);
-            alert("O tempo acabou");
+
+            setTimeout(() => {
+                alert("O tempo acabou");
+            }, 100);
         }
     };
 
@@ -64,11 +69,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const resetarTempo = () => {
         pausarTempo();
-        if (!pomo.classList.contains('dimmer')) {
+        if (pomo.classList.contains('dimmer')) {
             tempo = tempos.pomo;
-        } else if (!long.classList.contains('dimmer')) {
+        } else if (long.classList.contains('dimmer')) {
             tempo = tempos.long;
-        } else if (!rest.classList.contains('dimmer')) {
+        } else if (rest.classList.contains('dimmer')) {
             tempo = tempos.rest;
         }
         atualizarTimer();
@@ -78,9 +83,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const botoes = [pomo, long, rest];
         botoes.forEach(botao => {
             if (botao === botaoAtivo) {
-                botao.classList.remove('dimmer');
-            } else {
                 botao.classList.add('dimmer');
+                botao.classList.remove('transparent');
+            } else {
+                botao.classList.add('transparent');
+                botao.classList.remove('dimmer');
             }
         });
     };
@@ -98,6 +105,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         escurecerBotoes(pomo);
         mudarCorDeFundo('#C55B9D');
         resetarTempo();
+        iniciarTempo();
     });
 
     long.addEventListener('click', () => {
@@ -105,6 +113,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         escurecerBotoes(long);
         mudarCorDeFundo('#4E3F91');
         resetarTempo();
+        iniciarTempo();
     });
 
     rest.addEventListener('click', () => {
@@ -112,6 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         escurecerBotoes(rest);
         mudarCorDeFundo('#6495CB');
         resetarTempo();
+        iniciarTempo();
     });
 
     function getRandomImage() {
@@ -139,6 +149,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    function saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    
+    function loadTasks() {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) {
+            tasks = JSON.parse(storedTasks);
+            renderTasks();
+        }
+    }
+
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const title = document.getElementById('task-title').value;
@@ -152,6 +174,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 image: getRandomImage()
             });
             renderTasks();
+            saveTasks(); // Salva as tarefas no localStorage
             taskForm.reset();
         }
     });
@@ -162,17 +185,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('task-desc').value = task.desc;
         tasks.splice(index, 1); // Remove a tarefa para edição
         renderTasks();
+        saveTasks(); // Salva as tarefas no localStorage
     };
 
     window.deleteTask = function(index) {
         tasks.splice(index, 1);
         renderTasks();
+        saveTasks(); // Salva as tarefas no localStorage
     };
 
     window.toggleComplete = function(index) {
         tasks[index].completed = !tasks[index].completed;
         renderTasks();
+        saveTasks(); // Salva as tarefas no localStorage
     };
 
     atualizarTimer();
+    loadTasks();
 });
