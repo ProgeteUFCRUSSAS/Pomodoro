@@ -14,7 +14,7 @@
   }
   
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.6rem; /* 16px */
     height: 200%;
   }
@@ -50,8 +50,6 @@
   a {
     text-decoration: none;
   }
-  
-  /* Estilo do corpo principal */
   .main-body {
     background-color: #C55B9D;
     background-size: cover;
@@ -67,8 +65,8 @@
     right: 0;
     width: 100%;
     height: 45px;
-    background-color: lightgray;
-    border-bottom: 3px solid lightgray;
+    
+
   }
   
   .menu-content {
@@ -83,25 +81,602 @@
     display: flex;
     align-items: center;
   }
+
+  .menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    width: 0%;
+    height: 0.2rem;
+    background: crimson;
+    transition: all 300ms ease-in-out;
+  }
+
+  .menu ul li a:hover::after {
+    width: 50%;
+    left: 25%;
+  }
+
+  .relogio {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: #ffffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 70px;
+    color: #ffffff;
+  }
+
+  .timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 300px;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    padding: 10px;
+    background-color: #ffffff1b;
+    z-index: 0;
+  }
+
+  #Iniciar, #Pausar, #Resetar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7047C5;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 1px 0.5px rgba(0, 0, 0, 0.2);
+  }
+
+  .b25, .b10, .b5 {
+    display: flex;
+    border-radius: 5px;
+    color: #ffffff;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 25%;
+  }
+
+  .b25{
+    margin-left:-23%;   
+  }
+
+  .b5{
+    margin-left: 0%; 
+  }
+
+  .b10{
+    margin-left: 23%;
+  }
+
+  #Iniciar {
+    background-color: white;
+    margin-left: -30%;
+  }
   
+  #Pausar {
+    background-color: white;
+    margin-left: 0%;
+  }
+  
+  #Resetar {
+    background-color: white;
+    margin-left: 30%;
+  }
+
+
+  /* Botão ativo */
+  .dimmer{
+    background-color: #000000;
+    opacity: 0.6;
+    z-index: 2;
+  }
+  /* Botão não ativo */
+  .transparent {
+    background-color: transparent; /* Certifique-se de que o fundo é transparente */
+    border: 1px solid transparent; /* Se o botão tem uma borda, garanta que seja transparente */
+  }
+    
+  /* Remova estilos de foco padrão para não interferir */
+   button:focus {
+    outline: none;
+  }
+      
+      /* Efeito hover nos botões */
+  #Iniciar:hover {
+    background: rgb(167, 167, 167);
+  }
+      
+  #Pausar:hover {
+    background-color: rgb(167, 167, 167);
+  }
+      
+  #Resetar:hover {
+    background-color: rgb(167, 167, 167);
+  }
+
+  .tasks {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    top: 100%;
+    left: 25%;
+    width: 50%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #ffffff88;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+  
+h1 {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+textarea {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+  padding: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+btn:active{
+box-shadow: 0 5px #999;
+transform: translateY(5px);
+
+}
+
+.task-item:hover {
+background-color: #f1f3f5;
+}
+
+/* Lista de Tarefas */
+
+/* Estilo para o textarea de descrição da tarefa */
+
+
+/* Ajusta o estilo dos itens da lista */
+.task-item p {
+  word-wrap: break-word;
+  color: rgb(0, 0, 0);
+}
+
+.task-desc {
+  box-sizing: border-box;
+  resize: none; /* Desativa a redimensão manual */
+}
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.task-item button {
+  background-color: #dc3545;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.complt-button{ 
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.task-item button:hover {
+  background-color: #c82333;
+}
+
+/* Botão Editar */
+.task-item button.edit-btn {
+  background-color: #ffc107;
+}
+
+.task-item button.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+/* Botão de Marcar como Concluída */
+.task-item button.complete-btn {
+  background-color: #28a745;
+}
+
+.task-item button.complete-btn:hover {
+  background-color: #218838;
+}
+
+/* Estilo para Tarefa Concluída */
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+footer{
+border-top: 1px solid;
+padding: 10px;
+width: 100%;
+margin-top: 30px;
+height: 60px; /* Ajustado para um valor fixo */
+opacity: 0.8;
+}
+
+  /* Estilo do corpo principal */
+@media(max-width: 576px) {  
+    
   .menu h1 {
-    font-size: 2rem;
+    margin-top: 10px;
+    font-size: 18px;
   }
   
   .menu h1 a {
-    font-size: 2rem;
-    color: #001D9B;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-top: 10px;
   }
   
+  .menu ul li a {
+    display: block;
+    font-size: 18px;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    
+  }
+  
+  /* Relógio Pomodoro */
+  .relogio { 
+    width: 100px;
+    height: 100px; 
+    font-size: 40px;
+  }
+  
+  /* Container do timer */
+  .timer {
+    width: 50%;
+    height: 400px;
+  }
+  
+  /* Botões de controle */
+  #Iniciar, #Pausar, #Resetar {
+    font-size: 10px;
+    width: 26%;
+    height: 40px;
+  }
+  
+  .b25, .b10, .b5 {
+    width: 20%;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .b25{
+    margin-left:-23%;   
+  }
+
+  .b5{
+    margin-left: 0%; 
+  }
+
+  .b10{
+    margin-left: 23%;
+  }
+
+ 
+
+  #Iniciar {
+    background-color: white;
+    margin-left: -30%;
+  }
+  
+  #Pausar {
+    background-color: white;
+    margin-left: 0%;
+  }
+  
+  #Resetar {
+    background-color: white;
+    margin-left: 30%;
+  }
+
+
+/* Título Principal */
+h1 {
+    font-size: 16px;
+}
+
+/* Formulário de Entrada */
+
+
+input[type="text"],
+textarea {
+  font-size: 12px;
+}
+
+button {
+    font-size: 16px;
+}
+
+#task-list {
+  margin-top: 40px;
+}
+.task-item p {
+  
+  font-size: 10px;
+}
+
+.task-desc {
+  min-height: 50px; /* Altura mínima para o textarea */
+  max-height: 80px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Adiciona uma altura automática conforme o conteúdo */
+.task-item {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  max-width:300px; /* Ajuste conforme necessário */
+}
+
+/* Botões de Ação */
+.task-item button {
+    font-size: 14px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.complt-button{ 
+    font-size: 14px;
+}
+
+/* Botão Editar */
+.task-item button.edit-btn {
+    width:60px;
+    height: 35px;
+    font-size: 14px;
+
+}
+
+/* Botão de Marcar como Concluída */
+.task-item button.complete-btn {
+    width:90px;
+    height: 35px;
+    font-size: 14px;
+}
+footer{
+    font-size: 12px;
+}
+}
+
+@media(min-width: 577px ) and (max-width: 768px){
+    
+  .menu h1 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  
+  .menu h1 a {
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-top: 10px;
+  }
+  
+  .menu ul li a {
+    display: block;
+    font-size: 20px;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    
+  }
+  
+  
+  /* Relógio Pomodoro */
+  .relogio { 
+    width: 100px;
+    height: 100px; 
+    font-size: 50px;
+  }
+  
+  /* Container do timer */
+  .timer {
+    width: 50%;
+    height: 400px;
+  }
+  
+  /* Botões de controle */
+  #Iniciar, #Pausar, #Resetar {
+    font-size: 14px;
+    width: 26%;
+    height: 40px;
+  }
+  
+  .b25, .b10, .b5 {
+    width: 20%;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .b25{
+    margin-left:-23%;
+    
+  }
+  .b5{
+    margin-left: 0%;
+    
+  }
+  .b10{
+    margin-left: 23%;
+    
+  }
+
+ 
+
+  #Iniciar {
+    background-color: white;
+    margin-left: -30%;
+  }
+  
+  #Pausar {
+    background-color: white;
+    margin-left: 0%;
+  }
+  
+  #Resetar {
+    background-color: white;
+    margin-left: 30%;
+  }
+
+
+/* Título Principal */
+h1 {
+    font-size: 18px;
+}
+
+/* Formulário de Entrada */
+
+
+input[type="text"],
+textarea {
+  font-size: 14px;
+}
+
+button {
+    font-size: 18px;
+}
+
+#task-list {
+  margin-top: 40px;
+}
+.task-item p {
+  
+  font-size: 14px;
+}
+
+.task-desc {
+  min-height: 50px; /* Altura mínima para o textarea */
+  max-height: 80px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Adiciona uma altura automática conforme o conteúdo */
+.task-item {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  max-width:300px; /* Ajuste conforme necessário */
+}
+
+/* Botões de Ação */
+.task-item button {
+    font-size: 14px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.complt-button{ 
+    font-size: 12px;
+}
+
+/* Botão Editar */
+.task-item button.edit-btn {
+    width:60px;
+    height: 35px;
+    font-size: 12px;
+
+}
+
+/* Botão de Marcar como Concluída */
+.task-item button.complete-btn {
+    width:80px;
+    height: 35px;
+    font-size: 12px;
+}
+footer{
+  font-size: 14px;
+}
+}
+
+@media(min-width: 769px ) and (max-width: 992px){
+  .menu h1 {
+    margin-top: 10px;
+    font-size: 24px;
+  }
+
+  .menu h1 a {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-top: 10px;
+  }
+
   .menu ul li a {
     display: block;
     font-size: 2rem;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
-    color: #001D9B;
+    color: #FFFFFF;
     position: relative;
   }
-  
+
   /* Efeito hover no menu */
   .menu ul li a::after {
     content: '';
@@ -113,284 +688,445 @@
     background: crimson;
     transition: all 300ms ease-in-out;
   }
-  
+
   .menu ul li a:hover::after {
     width: 50%;
     left: 25%;
   }
-  
+
   /* Relógio Pomodoro */
   .relogio {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    background-color: #ffffff00;
     width: 200px;
     height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    color: rgb(255, 255, 255);
-  }
+    font-size: 70px;
   
+  }
+
   /* Container do timer */
   .timer {
     position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
+    top:-5%;
     width: 50%;
     height: 400px;
-    background-color: #ffffff1b;
-    z-index: 0;
   }
 
   /* Botões de controle */
   #Iniciar, #Pausar, #Resetar {
-    color: #7047C5;
-    border: none;
-    width: 100px;
+    font-size: 18px;
+    width: 26%;
     height: 50px;
-    cursor: pointer;
-    position: absolute;
-    top: 80%;
-    transform: translate(-50%, -50%);
+
   }
-  
+
   .b25, .b10, .b5 {
-    color: #ffffff;
-    border: none;
-    width: 100px;
-    height: 50px;
-    cursor: pointer;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 25%;
+    width: 20%;
+    height: 40px;
+    font-size: 13px;
   }
 
   .b25{
-    left: 35%;
-    font-size: 15px;
+    margin-left:-22%;
+    
   }
-
-  .b10{
-    left: 65%;
-    justify-content: center;
-    font-size: 12px;
-  }
-
   .b5{
-    left: 50%;
-    font-size: 15px;
+    margin-left: 0%;
+    
   }
+  .b10{
+    margin-left: 22%;
+    
+  }
+
+
 
   #Iniciar {
     background-color: white;
     left: 20%;
   }
-  
+
   #Pausar {
     background-color: white;
     left: 50%;
   }
-  
+
   #Resetar {
     background-color: white;
     left: 80%;
   }
 
     /* Botão ativo */
-  .dimmer {
-    background-color: rgb(255, 255, 255); /* Ou qualquer cor que você deseja para o botão ativo */
-  }
 
   /* Botão não ativo */
-  .transparent {
-    background-color: transparent; /* Certifique-se de que o fundo é transparente */
-    border: 1px solid transparent; /* Se o botão tem uma borda, garanta que seja transparente */
-  }
-
-  /* Remova estilos de foco padrão para não interferir */
-  button:focus {
-    outline: none;
-  }
-  
-  /* Efeito hover nos botões */
-  #Iniciar:hover {
-    background: rgb(167, 167, 167);
-  }
-  
-  #Pausar:hover {
-    background-color: rgb(167, 167, 167);
-  }
-  
-  #Resetar:hover {
-    background-color: rgb(167, 167, 167);
-  }
-
-  .dimmer{
-    background-color: rgb(167, 167, 167);
-    z-index: 2;
-  }
-
   .tasks {
-    position: relative;
     margin-top: 600px;
-    margin-bottom: 50px;
-    top: 100%;
-    left: 25%;
-    width: 50%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #ffffff88;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
+  }
 
-/* Título Principal */
-h1 {
-    text-align: center;
-    color: #333;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
+  /* Título Principal */
+  h1 {
+    font-size: 24px;
+  }
 
-/* Formulário de Entrada */
-form {
-    display: flex;
-    flex-direction: column;
-}
+  /* Formulário de Entrada */
 
-input[type="text"],
-textarea {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+  input[type="text"],
+  textarea {
     font-size: 16px;
-    transition: border-color 0.3s;
-}
+  }
 
-input[type="text"]:focus,
-textarea:focus {
-    border-color: #007bff;
-    outline: none;
-}
+  button {
+    font-size: 18px;
+  }
 
-button {
-    padding: 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-button:hover {
-    background-color: #0056b3;
-}
+  /* Lista de Tarefas */
 
-btn:active{
-  box-shadow: 0 5px #999;
-  transform: translateY(5px);
+  /* Estilo para o textarea de descrição da tarefa */
+  .task-desc {
+    min-height: 50px; /* Altura mínima para o textarea */
+    max-height: 190px;
+    width: 100%;
+    max-width: 100%;
+  }
 
-}
-
-/* Lista de Tarefas */
-#task-list {
-    margin-top: 30px;
-}
-
-.task-item {
+  /* Adiciona uma altura automática conforme o conteúdo */
+  .task-item {
     width: 100%;
     margin-top: 20px;
     max-width: 900px; /* Ajuste conforme necessário */
-    background-size: cover;
-    background-position: center;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-}
+  }
 
-.task-desc{
-  width: 100%;
-  max-width: 100%;
-}
-
-.task-item p {
-    margin: 0;
-    word-wrap: break-word;
+  /* Ajusta o estilo dos itens da lista */
+  .task-item p {
     font-size: 16px;
-    color: rgb(0, 0, 0);
-}
+  }
 
-.task-item:hover {
-    background-color: #f1f3f5;
-}
-
-/* Botões de Ação */
-.task-item button {
-    background-color: #dc3545;
-    border: none;
-    padding: 10px;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
+  /* Botões de Ação */
+  .task-item button {
     font-size: 14px;
-    margin-left: 10px;
-    transition: background-color 0.3s;
-    margin-top: 25px;
-}
+    margin-top: 10px;
+  }
 
-.complt-button{
-    background-color: #522525;
-    border: none;
-    padding: 10px;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
+  .complt-button{
     font-size: 14px;
-    margin-left: 10px;
-    transition: background-color 0.3s;
-    margin-top: 25px;
+
+  }
+
 }
 
-.task-item button:hover {
-    background-color: #c82333;
+@media(min-width: 993px ) and (max-width: 1200px){
+  .menu h1 {
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+
+  .menu h1 a {
+    font-size: 2rem;
+    color: #FFFFFF;
+    margin-top: 10px;
+  }
+
+  .menu ul li a {
+    display: block;
+    font-size: 2rem;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+  }
+
+  /* Efeito hover no menu */
+  .menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    width: 0%;
+    height: 0.2rem;
+    background: crimson;
+    transition: all 300ms ease-in-out;
+  }
+
+  .menu ul li a:hover::after {
+    width: 50%;
+    left: 25%;
+  }
+
+  /* Relógio Pomodoro */
+  .relogio {
+    width: 200px;
+    height: 200px;
+    font-size: 80px;
+  
+  }
+
+  /* Container do timer */
+  .timer {
+    position: absolute;
+    top:-5%;
+    width: 50%;
+    height: 400px;
+  }
+
+  /* Botões de controle */
+  #Iniciar, #Pausar, #Resetar {
+    font-size: 22px;
+    width: 26%;
+    height: 50px;
+
+  }
+
+  .b25, .b10, .b5 {
+    width: 20%;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .b25{
+    margin-left:-20%;
+    
+  }
+  .b5{
+    margin-left: 0%;
+    
+  }
+  .b10{
+    margin-left: 20%;
+
+  }
+
+
+
+  #Iniciar {
+    background-color: white;
+    left: 20%;
+  }
+
+  #Pausar {
+    background-color: white;
+    left: 50%;
+  }
+
+  #Resetar {
+    background-color: white;
+    left: 80%;
+  }
+
+    /* Botão ativo */
+
+  /* Botão não ativo */
+  .tasks {
+    margin-top: 600px;
+  }
+
+  /* Título Principal */
+  h1 {
+    
+    font-size: 26px;
+  }
+
+  /* Formulário de Entrada */
+
+  input[type="text"],
+  textarea {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 18px;
+  }
+
+
+  /* Lista de Tarefas */
+
+  /* Estilo para o textarea de descrição da tarefa */
+  .task-desc {
+    min-height: 50px; /* Altura mínima para o textarea */
+    max-height: 190px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Adiciona uma altura automática conforme o conteúdo */
+  .task-item {
+    width: 100%;
+    margin-top: 20px;
+    max-width: 900px; /* Ajuste conforme necessário */
+  }
+
+  /* Ajusta o estilo dos itens da lista */
+  .task-item p {
+    font-size: 18px;
+  }
+
+  /* Botões de Ação */
+  .task-item button {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .complt-button{
+    font-size: 18px;
+
+  }
+  footer{
+    font-size: 18px;
+}
 }
 
-/* Botão Editar */
-.task-item button.edit-btn {
-    background-color: #ffc107;
-}
+@media(min-width: 1201px ) and (max-width: 1399px){
+  .menu h1 {
+    margin-top: 10px;
+    font-size: 2rem;
+  }
 
-.task-item button.edit-btn:hover {
-    background-color: #e0a800;
-}
+  .menu h1 a {
+    font-size: 2rem;
+    color: #FFFFFF;
+    margin-top: 10px;
+  }
 
-/* Botão de Marcar como Concluída */
-.task-item button.complete-btn {
-    background-color: #28a745;
-}
+  .menu ul li a {
+    display: block;
+    font-size: 2rem;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+  }
 
-.task-item button.complete-btn:hover {
-    background-color: #218838;
-}
+  /* Efeito hover no menu */
+  .menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    width: 0%;
+    height: 0.2rem;
+    background: crimson;
+    transition: all 300ms ease-in-out;
+  }
 
-/* Estilo para Tarefa Concluída */
-.completed {
-    text-decoration: line-through;
-    color: #888;
-}
+  .menu ul li a:hover::after {
+    width: 50%;
+    left: 25%;
+  }
 
-footer{
-  background-color: #c2c2c2;
-  margin-top: 5%;
-  height: 6/0px;
+  /* Relógio Pomodoro */
+  .relogio {
+    width: 200px;
+    height: 200px;
+    font-size: 100px;
+  
+  }
+
+  /* Container do timer */
+  .timer {
+    position: absolute;
+    top:-5%;
+    width: 50%;
+    height: 400px;
+  }
+
+  /* Botões de controle */
+  #Iniciar, #Pausar, #Resetar {
+    font-size: 22px;
+    width: 180px;
+    height: 55px;
+
+  }
+
+  .b25, .b10, .b5 {
+    width: 130px;
+    height: 30px;
+  }
+
+  .b25{
+    margin-left:-20%;
+    font-size: 15px;
+  }
+  .b5{
+    margin-left: 0%;
+    font-size: 15px;
+  }
+  .b10{
+    margin-left: 20%;
+    font-size: 15px;
+  }
+
+
+
+  #Iniciar {
+    background-color: white;
+    left: 20%;
+  }
+
+  #Pausar {
+    background-color: white;
+    left: 50%;
+  }
+
+  #Resetar {
+    background-color: white;
+    left: 80%;
+  }
+
+    /* Botão ativo */
+
+  /* Botão não ativo */
+  .tasks {
+    margin-top: 600px;
+  }
+
+  /* Título Principal */
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  /* Formulário de Entrada */
+
+  input[type="text"],
+  textarea {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+
+
+  /* Lista de Tarefas */
+
+  /* Estilo para o textarea de descrição da tarefa */
+  .task-desc {
+    min-height: 50px; /* Altura mínima para o textarea */
+    max-height: 190px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Adiciona uma altura automática conforme o conteúdo */
+  .task-item {
+    width: 100%;
+    margin-top: 20px;
+    max-width: 900px; /* Ajuste conforme necessário */
+  }
+
+  /* Ajusta o estilo dos itens da lista */
+  .task-item p {
+    font-size: 16px;
+  }
+
+  /* Botões de Ação */
+  .task-item button {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .complt-button{
+    font-size: 14px;
+
+  }
+  footer{
+    font-size: 18px;
+  } 
 }

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rest = document.getElementById('rest');
     const audio = document.getElementById('audio');
     const body = document.body;
+    const menu = document.menu;
 
     const images = [
         'path/to/image1.png',
@@ -46,17 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             audio.play();
             clearInterval(intervalo);
-
+            
             setTimeout(() => {
                 alert("O tempo acabou");
+                resetarTempo(); // Reinicia o timer após o alerta
             }, 100);
         }
     };
+    
 
     const iniciarTempo = () => {
         if (!timerAtivo) {
             timerAtivo = true;
             intervalo = setInterval(reduzirTempo, 1000);
+            console.log("Timer iniciado"); // Adicione este log para depuração
         }
     };
 
@@ -105,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(pomo);
         mudarCorDeFundo('#C55B9D');
         resetarTempo();
-        iniciarTempo();
+
     });
 
     long.addEventListener('click', () => {
@@ -113,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(long);
         mudarCorDeFundo('#4E3F91');
         resetarTempo();
-        iniciarTempo();
     });
 
     rest.addEventListener('click', () => {
@@ -121,13 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(rest);
         mudarCorDeFundo('#6495CB');
         resetarTempo();
-        iniciarTempo();
     });
 
     function getRandomImage() {
         const imagerand = Math.floor(Math.random() * images.length);
         return images[imagerand];
     }
+
+    document.addEventListener('input', (event) => {
+        if (event.target.matches('#task-desc')) {
+            event.target.style.height = 'auto'; // Reseta a altura
+            event.target.style.height = `${event.target.scrollHeight}px`; // Ajusta para o conteúdo
+        }
+    });
+
 
     function renderTasks() {
         taskList.innerHTML = '';
