@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Definição dos tempos padrão
     const tempos = {
-        pomo: 25 * 60,  // Tempo para Pomodoro (25 minutos)
+        pomo: 0.1 * 60,  // Tempo para Pomodoro (25 minutos)
         long: 10 * 60,  // Tempo de pausa longa (10 minutos)
         rest: 5 * 60,   // Tempo de pausa curta (5 minutos)
         custom: 0,      // Tempo personalizado
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerAtivo = false;  // Estado para verificar se o timer está ativo
     let tasks = [];          // Array para armazenar tarefas
     let tasksConcluidas = 0; // Contador de tarefas concluídas
-    
+
     // Seleção de outros elementos da DOM
     const relogio = document.getElementById('relogio');
     const iniciar = document.getElementById('Iniciar');
@@ -26,26 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const long = document.getElementById('long');
     const rest = document.getElementById('rest');
     const custom = document.getElementById('custom-minutes-button');
-    const customContainer = document.getElementById('custom-timer-container');
+    const customDia = document.getElementById('custom-dia');
     const setCustomTimer = document.getElementById('set-custom-timer');
     const customMinutesInput = document.getElementById('custom-minutes');
-    const customDia = document.getElementById('custom-dia');
     const audio = document.getElementById('audio');
     const body = document.body;
     let valorCustomizadoInicial = 0; // Valor inicial do timer personalizado
-    
+
     const increaseButton = document.getElementById("increase-cycles");
     const decreaseButton = document.getElementById("decrease-cycles");
     const cyclesInput = document.getElementById("task-cycles");
-    
-    // Função para aumentar o contador de ciclos de uma tarefa
-    const increaseTaskCycles = (taskId) => {
-        const task = tasks.find(task => task.id === taskId);
-        if (task && task.completedCycles < task.totalCycles) {
-            task.completedCycles++;
-            renderizarTasks(); // Atualiza a interface
-        }
-    };
 
     // Função para formatar o tempo no formato HH:MM:SS
     const formatarTempo = (segundos) => {
@@ -105,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: TaskTitle,
             desc: TaskDesc,
             completed: false,
-            totalCycles: cyclesInput.value,
+            totalCycles: parseInt(cyclesInput.value),
             completedCycles: 0 // Inicializa com 0 ciclos concluídos
         });
 
@@ -125,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const taskItem = document.createElement('div');
             taskItem.classList.add('task-item');
             taskItem.innerHTML = 
-                `<h2>${task.title}</h2>
+                `<div class="taskItem">
+                <h2>${task.title}</h2>
                 <p>${task.desc}</p>
                 <p>Ciclos concluídos: ${task.completedCycles}/${task.totalCycles}</p>
                 <div class='task-buttons'>
@@ -164,15 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (task.completedCycles >= task.totalCycles) {
                     tasksConcluidas++; // Incrementa tarefas concluídas
                 }
+            } else {
+                task.completedCycles--; // Decrementa ciclos concluídos
+                if (task.completedCycles < task.totalCycles) {
+                    tasksConcluidas--; // Decrementa tarefas concluídas
+                }
             }
             renderizarTasks(); // Atualiza a lista de tarefas
         }
-    };
-
-    // Função para iniciar o Pomodoro para uma tarefa
-    window.startWithPomodoro = (taskId) => {
-        currentTaskId = taskId;
-        alert(`Pomodoro iniciado para a tarefa: ${tasks.find(task => task.id === taskId).title}`);
     };
 
     // Função para atualizar o relógio com o tempo restante
@@ -181,23 +171,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Função para reduzir o tempo no timer
-    const reduzirTempo = (taskId) => {
+    const reduzirTempo = () => {
         if (tempo > 0) {
             tempo--;
             atualizarTimer();
+            if (tempo <= 10) {
+                relogio.classList.add('pulse'); // Adiciona animação
+            }
         } else {
-            audio.play(); // T toca um som quando o tempo acaba
-            clearInterval(intervalo); // Para o intervalo
+            relogio.classList.remove('pulse'); // Remove animação
+            audio.play();
+            clearInterval(intervalo);
             setTimeout(() => {
-                alert("O tempo acabou");
-                currentTaskId = taskId;
-                if (currentTaskId) {
-                    const task = tasks.find(task => task.id === currentTaskId);
-                    if (task) {
-                        increaseTaskCycles(task.id); // Aumenta o contador de ciclos da tarefa
+                // Incrementa ciclos de todas as tarefas
+                tasks.forEach(task => {
+                    if (task.completedCycles < task.totalCycles) {
+                        task.completedCycles++;
                     }
-                }
-                resetarTempo(); // Reseta o tempo
+                });
+                renderizarTasks(); // Atualiza a interface
+                resetarTempo();
             }, 100);
         }
     };
@@ -206,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const iniciarTempo = () => {
         if (!timerAtivo) {
             timerAtivo = true;
-            intervalo = setInterval(() => reduzirTempo(currentTaskId), 1000); // Inicia o intervalo
+            intervalo = setInterval(reduzirTempo, 1000); // Inicia o intervalo
         }
     };
 
@@ -221,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para resetar o timer
     const resetarTempo = () => {
         pausarTempo();
-    
         if (pomo.classList.contains('dimmer')) {
             tempo = tempos.pomo;
         } else if (long.classList.contains('dimmer')) {
@@ -231,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (custom.classList.contains('dimmer')) {
             tempo = valorCustomizadoInicial; // Usa o valor inicial do tempo personalizado
         }
-    
         atualizarTimer(); // Atualiza o display do relógio
     };
 
@@ -260,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(pomo);
         mudarCorDeFundo('#C55B9D');
         resetarTempo();
+        iniciarTempo(); // Inicia o timer automaticamente
     });
 
     long.addEventListener('click', () => {
@@ -267,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(long);
         mudarCorDeFundo('#6B3D98');
         resetarTempo();
+        iniciarTempo(); // Inicia o timer automaticamente
     });
 
     rest.addEventListener('click', () => {
@@ -274,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(rest);
         mudarCorDeFundo('#FF7B7B');
         resetarTempo();
+        iniciarTempo(); // Inicia o timer automaticamente
     });
 
     custom.addEventListener('click', () => {
@@ -281,16 +275,20 @@ document.addEventListener('DOMContentLoaded', () => {
         escurecerBotoes(custom);
         mudarCorDeFundo('#c5b0eb');
         resetarTempo();
+        iniciarTempo(); // Inicia o timer automaticamente
     });
 
     // Define o evento para o botão de definir o timer personalizado
     setCustomTimer.addEventListener('click', () => {
-        if (customMinutesInput.value !== '') {
-            valorCustomizadoInicial = parseInt(customMinutesInput.value) * 60;
+        const minutos = parseInt(customMinutesInput.value);
+        if (!isNaN(minutos) && minutos > 0) {
+            valorCustomizadoInicial = minutos * 60;
             tempos.custom = valorCustomizadoInicial;
             tempo = tempos.custom;
-            customContainer.close();
+            customDia.close(); // Corrigido aqui
             resetarTempo();
+        } else {
+            alert('Por favor, insira um valor válido para o tempo personalizado.');
         }
     });
 
