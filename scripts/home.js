@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Definição dos tempos padrão
     const tempos = {
-        pomo: 0.1 * 60,  // Tempo para Pomodoro (25 minutos)
+        pomo: 25 * 60,  // Tempo para Pomodoro (25 minutos)
         long: 10 * 60,  // Tempo de pausa longa (10 minutos)
         rest: 5 * 60,   // Tempo de pausa curta (5 minutos)
         custom: 0,      // Tempo personalizado
