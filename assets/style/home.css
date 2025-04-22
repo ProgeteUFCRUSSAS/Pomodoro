@@ -1,0 +1,1368 @@
+:root {
+  --fundo-vermelho: ;
+}
+/* Estilo geral */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+ /* Facilita o uso de rem para dimensionamento */
+}
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  background: url(../images/tortoise-shell.svg);
+ /* 16px */
+  height: 200%;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: 6rem;
+}
+h2 {
+  font-size: 5.5rem;
+}
+h3 {
+  font-size: 5rem;
+}
+h4 {
+  font-size: 4.5rem;
+}
+h5 {
+  font-size: 4rem;
+}
+h6 {
+  font-size: 3.5rem;
+}
+a {
+  text-decoration: none;
+}
+.main-body {
+  background-color: #C55B9D;
+  background-size: cover;
+  background-position: center 13%;
+  gap: 3rem;
+}
+/* Menu */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 45px;
+}
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.menu ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.menu ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  width: 0%;
+  height: 0.2rem;
+  background: crimson;
+  transition: all 300ms ease-in-out;
+}
+.menu ul li a:hover::after {
+  width: 50%;
+  left: 25%;
+}
+.relogio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: #ffffff00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #ffffff;
+}
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 300px;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: #ffffff1b;
+  z-index: 0;
+}
+#Iniciar, #Pausar, #Resetar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7047C5;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 80%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 1px 0.5px rgba(0, 0, 0, 0.2);
+}
+.b25, .b10, .b5, .cust {
+  display: flex;
+  border-radius: 5px;
+  color: #ffffff;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 20%;
+}
+dialog#custom-dia {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  animation: fadeIn 0.3s ease-in-out;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  z-index: 1000;
+}
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+ }
+  to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+ }
+}
+#custom-dia h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+#custom-dia p {
+  margin-bottom: 20px;
+  color: #f5f5f5;
+  text-align: center;
+}
+#custom-dia input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  font-size: 1em;
+  text-align: center;
+}
+#custom-dia, #set-custom-timer{
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background: #4caf50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.set-custom-timer:hover {
+  background: #307334;
+}
+#custom-dia button:active {
+  transform: scale(0.98);
+}
+#custom-dia button.cancel-button {
+  background: #f44336;
+  margin-top: 10px;
+}
+#custom-dia button.cancel-button:hover {
+  background: #d32f2f;
+}
+
+.cust {
+  display: flex;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color: #ffffff00;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 20%;
+  font-family: 'Inter', sans-serif;
+}
+.tasks {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  width: fit-content;
+  block-size: fit-content;
+}
+.task-add {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+#adicionar-tarefa {
+  background-color: #28a745;
+  color: #fff;
+  display: flex;
+  justify-self: center;
+}
+#adicionar-tarefa:hover {
+  background-color: #218838;
+}
+#adicionar-tarefa:active {
+  background-color: #155b24;
+}
+/* Modal de Menu com o Formulário */
+dialog#menu-dialog {
+  position: fixed;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border: none;
+  border-radius: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+  z-index: 1000;
+}
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#menu-dialog .tasks {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 500px;
+  width: 500px;
+  margin-top: -250px;
+  top: 125%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#task-form {
+  display: flex;
+  flex-direction: column;
+}
+#task-form input, #task-form textarea {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#task-form button {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#task-form button:hover {
+  background-color: #0056b3;
+}
+#task-list {
+  margin-top: 20px;
+  width: 50%;
+  background-color: #ffffff88;
+  margin: 0 auto;
+}
+#task-item {
+  background-color: #ffffff88;
+  width: 50%;
+}
+#task-list div {
+  background-color: #ffffff00;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+#task-list p, #task-list h2 {
+  color: #000000;
+}
+#menu-dialog button {
+  margin-top: 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+}
+#menu-dialog button:hover {
+  background-color: #d32f2f;
+}
+/* Botão ativo */
+.dimmer {
+  background-color: #000000;
+  opacity: 0.6;
+  z-index: 2;
+}
+/* Botão não ativo */
+.transparent {
+  background-color: transparent;
+ /* Certifique-se de que o fundo é transparente */
+  border: 1px solid transparent;
+ /* Se o botão tem uma borda, garanta que seja transparente */
+}
+/* Remova estilos de foco padrão para não interferir */
+button:focus {
+  outline: none;
+}
+/* Efeito hover nos botões */
+#Iniciar:hover {
+  background: rgb(167, 167, 167);
+}
+#Pausar:hover {
+  background-color: rgb(167, 167, 167);
+}
+#Resetar:hover {
+  background-color: rgb(167, 167, 167);
+}
+.tasks {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  top: 100%;
+  left: 25%;
+  width: 50%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #ffffff88;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+h1 {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input[type="text"], textarea {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+input[type="text"]:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+button {
+  padding: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #0056b3;
+}
+btn:active {
+  box-shadow: 0 5px #999;
+  transform: translateY(5px);
+}
+/* Lista de Tarefas */
+/* Estilo para o textarea de descrição da tarefa */
+/* Ajusta o estilo dos itens da lista */
+.task-item p {
+  word-wrap: break-word;
+  color: rgb(0, 0, 0);
+}
+.task-desc {
+  box-sizing: border-box;
+  resize: none;
+ /* Desativa a redimensão manual */
+}
+.task-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+.task-item button {
+  background-color: #dc3545;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.complt-button {
+  margin-left: 5px;
+  margin-top: 20px;
+}
+.task-item button:hover {
+  background-color: #c82333;
+}
+/* Botão Editar */
+.task-item button.edit-btn {
+  background-color: #ffc107;
+}
+.task-item button.edit-btn:hover {
+  background-color: #e0a800;
+}
+/* Botão de Marcar como Concluída */
+.task-item button.complete-btn {
+  background-color: #28a745;
+}
+.task-item button.complete-btn:hover {
+  background-color: #218838;
+}
+
+/* Estilo para Tarefa Concluída */
+.completed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  text-decoration: line-through;
+}
+
+.completed button{
+  text-decoration: none;
+}
+
+
+
+.completed button{
+  margin-bottom: 10px;
+}
+
+footer {
+  border-top: 1px solid;
+  padding: 10px;
+  width: 100%;
+  margin-top: 30px;
+  height: 60px;
+ /* Ajustado para um valor fixo */
+  opacity: 0.8;
+}
+
+.cycle-control {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cycle-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#task-cycles {
+  width: 60px;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.cycle-btn {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+  margin-bottom: 22px;
+}
+
+.cycle-buttons{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.task-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.task-active {
+  border: 2px solid #4CAF50; /* Cor de destaque */
+  background-color: #e8f5e9; /* Fundo claro */
+}
+
+.btn-adicionar{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.cancelar{
+  background: none;
+}
+.cancelar:hover{
+  background-color: rgba(44, 28, 28, 0.653);
+}
+
+/* Estilo do corpo principal */
+/* Responsividade para dispositivos menores que 576px */
+@media (max-width: 576px) {
+  .menu h1 {
+      margin-top: 10px;
+      font-size: 18px;
+ }
+  .menu h1 a {
+      font-size: 18px;
+      color: #FFFFFF;
+      margin-top: 10px;
+ }
+  .menu ul li a {
+      display: block;
+      font-size: 18px;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+ }
+ /* Relógio Pomodoro */
+  .relogio {
+      width: 100px;
+      height: 100px;
+      font-size: 40px;
+ }
+ /* Container do timer */
+  .timer {
+      width: 50%;
+      height: 400px;
+ }
+ /* Botões de controle */
+  #Iniciar, #Pausar, #Resetar {
+      font-size: 10px;
+      width: 26%;
+      height: 40px;
+ }
+  .b25, .b10, .b5 {
+      width: 20%;
+      height: 30px;
+      font-size: 10px;
+ }
+  .cust {
+      width: 25%;
+      height: 30px;
+      font-size: 10px;
+}
+  .b25 {
+      margin-left: -35%;
+      font-size: 10px;
+ }
+  .b5 {
+      margin-left: -15%;
+      font-size: 10px;
+ }
+  .b10 {
+      margin-left: 5%;
+      font-size: 10px;
+ }
+  .cust {
+      margin-left: 28%;
+      font-size: 10px;
+ }
+  #Iniciar {
+      background-color: white;
+      margin-left: -30%;
+ }
+  #Pausar {
+      background-color: white;
+      margin-left: 0%;
+ }
+  #Resetar {
+      background-color: white;
+      margin-left: 30%;
+ }
+ /* Título Principal */
+  h1 {
+      font-size: 16px;
+ }
+ /* Formulário de Entrada */
+  input[type="text"], textarea {
+      font-size: 12px;
+ }
+  button {
+      font-size: 16px;
+ }
+ 
+  #task-list {
+      margin-top: 40px;
+ }
+ #tasks h1{
+  align-items: center;
+ }
+  .task-item p {
+      font-size: 10px;
+ }
+ .task-add {
+  height: 50px;
+}
+  .task-desc {
+      min-height: 50px;
+      max-height: 80px;
+      width: 100%;
+      max-width: 100%;
+ }
+
+  .task-item {
+      width: 100%;
+      height: 120px;
+      margin-top: 10px;
+      max-width: 400px;
+ }
+ .task-item h2 {
+  margin-top: 5px;
+  font-size: 15px;
+  }
+  .task-item button {
+      font-size: 12px;
+ }
+  .complt-button {
+      font-size: 12px;
+ }
+  .task-item button.edit-btn {
+      width: 25px;
+      height: 35px;
+      font-size: 14px;
+ }
+  .task-item button.complete-btn {
+      width: 45px;
+      height: 35px;
+      font-size: 13px;
+ }
+
+ .completed{
+      width: 100%;
+      height: 120px;
+      margin-top: 10px;
+      max-width: 400px;
+ }
+
+  footer {
+      font-size: 12px;
+ }
+ .btn-adicionar{
+  width: 100px;
+  height: 50px;
+}
+ .btn-adicionar h1{
+  font-size: 12px;
+ }
+ dialog#menu-dialog {
+  width: 300px;
+  height: 500px;
+}
+#menu-dialog .tasks {
+  height: 500px;
+  width: 300px;
+  
+}
+}
+
+/* Responsividade para dispositivos de 577px até 768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .menu h1 {
+      margin-top: 10px;
+      font-size: 20px;
+ }
+  .menu h1 a {
+      font-size: 20px;
+      color: #FFFFFF;
+      margin-top: 10px;
+ }
+  .menu ul li a {
+      display: block;
+      font-size: 20px;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+ }
+  .relogio {
+      width: 100px;
+      height: 100px;
+      font-size: 50px;
+ }
+  .timer {
+      width: 50%;
+      height: 400px;
+ }
+  #Iniciar, #Pausar, #Resetar {
+      font-size: 14px;
+      width: 26%;
+      height: 40px;
+ }
+  .b25 {
+      width: 22%;
+      height: 30px;
+      font-size: 12px;
+ }
+ .b10, .b5 {
+  width: 18%;
+  height: 30px;
+  font-size: 12px;
+}
+  .cust {
+  width: 30%;
+  height: 30px;
+  font-size: 12px;
+}
+  .b25 {
+      margin-left:-35%;
+      font-size: 12px;
+ }
+  .b5 {
+      margin-left: -15%;
+      font-size: 12px;
+ }
+  .b10 {
+      margin-left: 3%;
+      font-size: 12px;
+ }
+  .cust {
+      margin-left: 27%;
+      font-size: 12px;
+ }
+  #Iniciar {
+      background-color: white;
+      margin-left: -30%;
+ }
+  #Pausar {
+      background-color: white;
+      margin-left: 0%;
+ }
+  #Resetar {
+      background-color: white;
+      margin-left: 30%;
+ }
+  h1 {
+      font-size: 18px;
+ }
+  input[type="text"], textarea {
+      font-size: 14px;
+ }
+  button {
+      font-size: 18px;
+ }
+  #task-list {
+      margin-top: 40px;
+ }
+  .task-item p {
+      font-size: 13px;
+ }
+  .task-desc {
+      min-height: 50px;
+      max-height: 80px;
+      width: 100%;
+      max-width: 100%;
+ }
+ .task-item {
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+  max-width: 400px;
+}
+
+.completed {
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+  max-width: 400px;
+}
+
+.task-item h2 {
+margin-top: 10px;
+font-size: 16px;
+}
+.task-item button {
+  font-size: 12px;
+}
+.complt-button {
+  font-size: 14px;
+}
+.task-item button.edit-btn {
+  width: 50px;
+  height: 40px;
+  font-size: 14px;
+}
+.task-item button.complete-btn {
+  width: 80px;
+  height: 35px;
+  font-size: 13px;
+}
+  footer {
+      font-size: 14px;
+ }
+  .btn-adicionar{
+      width: 150px;
+      height: 50px;
+  }
+  .btn-adicionar h1{
+      font-size: 12px;
+  }
+  dialog#menu-dialog {
+    width: 350px;
+    height: 500px;
+  }
+  #menu-dialog .tasks {
+    height: 500px;
+    width: 350px;
+    }
+
+}
+/* Responsividade para dispositivos de 769px até 992px */
+@media (min-width: 769px) and (max-width: 992px) {
+  .menu h1 {
+      margin-top: 10px;
+      font-size: 24px;
+ }
+  .menu h1 a {
+      font-size: 24px;
+      color: #FFFFFF;
+      margin-top: 10px;
+ }
+  .menu ul li a {
+      display: block;
+      font-size: 2rem;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+      position: relative;
+ }
+  .menu ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 50%;
+      width: 0%;
+      height: 0.2rem;
+      background: crimson;
+      transition: all 300ms ease-in-out;
+ }
+  .menu ul li a:hover::after {
+      width: 50%;
+      left: 25%;
+ }
+  .relogio {
+      width: 200px;
+      height: 200px;
+      font-size: 70px;
+ }
+  .timer {
+      top: -5%;
+      width: 50%;
+      height: 400px;
+ }
+  #Iniciar, #Pausar, #Resetar {
+      font-size: 18px;
+      width: 26%;
+      height: 50px;
+ }
+  .b25{
+      width: 22%;
+      height: 40px;
+ }
+  .b10, .b5{
+      width: 18%;
+      height: 40px;
+  } 
+  .cust {
+      width: 28%;
+      height: 40px;
+  }
+  .b25 {
+      margin-left: -35%;
+      font-size: 15px;
+ }
+  .b5 {
+      margin-left: -15%;
+      font-size: 15px;
+ }
+  .b10 {
+      margin-left: 4%;
+      font-size: 15px;
+ }
+  .cust {
+      margin-left: 28%;
+      font-size: 15px;
+ }
+  #Iniciar {
+      background-color: white;
+      left: 20%;
+ }
+  #Pausar {
+      background-color: white;
+      left: 50%;
+ }
+  #Resetar {
+      background-color: white;
+      left: 80%;
+ }
+  .tasks {
+      margin-top: 600px;
+ }
+  h1 {
+      font-size: 24px;
+ }
+  input[type="text"], textarea {
+      font-size: 16px;
+ }
+  button {
+      font-size: 18px;
+ }
+  .task-desc {
+      min-height: 50px;
+      max-height: 190px;
+      width: 100%;
+      max-width: 100%;
+ }
+  .task-item {
+      width: 100%;
+      height: 150px;
+      margin-top: 10px;
+      max-width: 500px;
+ }
+
+ .completed {
+  width: 100%;
+  height: 150px;
+  margin-top: 10px;
+  max-width: 500px;
+}
+
+  .task-item h2 {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  .task-item p {
+      font-size: 16px;
+ }
+  .task-item button {
+      font-size: 16px;
+ }
+  .complt-button {
+      font-size: 16px;
+ }
+  .task-item button.edit-btn {
+      width: 70px;
+      height: 40px;
+      font-size: 16px;
+ }
+  .task-item button.complete-btn {
+      width: 100px;
+      height: 40px;
+      font-size: 15px;
+ }
+  footer {
+      font-size: 16px;
+ }
+ .task-add {
+  height: 70px;
+}
+.btn-adicionar{
+    width: 150px;
+    height: 60px;
+}
+.btn-adicionar h1{
+    font-size: 15px;
+}
+dialog#menu-dialog {
+  width: 380px;
+  height: 500px;
+}
+#menu-dialog .tasks {
+  height: 500px;
+  width: 380px;
+  }
+
+}
+/* Responsividade para dispositivos de 993px até 1200px */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .menu h1 {
+      margin-top: 10px;
+      font-size: 24px;
+ }
+  .menu h1 a {
+      font-size: 24px;
+      color: #FFFFFF;
+      margin-top: 10px;
+ }
+  .menu ul li a {
+      display: block;
+      font-size: 2rem;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+      position: relative;
+ }
+  .menu ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 50%;
+      width: 0%;
+      height: 0.2rem;
+      background: crimson;
+      transition: all 300ms ease-in-out;
+ }
+  .menu ul li a:hover::after {
+      width: 50%;
+      left: 25%;
+ }
+  .relogio {
+      width: 200px;
+      height: 200px;
+      font-size: 80px;
+ }
+  .timer {
+      top: -5%;
+      width: 50%;
+      height: 400px;
+ }
+  #Iniciar, #Pausar, #Resetar {
+      font-size: 22px;
+      width: 26%;
+      height: 50px;
+ }
+  .b25{
+      width: 22%;
+      height: 40px;
+ }
+  .b10, .b5{
+      width: 18%;
+      height: 40px;
+  } 
+  .cust {
+      width: 23%;
+      height: 40px;
+  }
+  .b25 {
+      margin-left: -35%;
+      font-size: 15px;
+ }
+  .b5 {
+      margin-left: -14%;
+      font-size: 15px;
+ }
+  .b10 {
+      margin-left: 6%;
+      font-size: 15px;
+ }
+  .cust {
+      margin-left: 28%;
+      font-size: 15px;
+ }
+  #Iniciar {
+      background-color: white;
+      left: 20%;
+ }
+  #Pausar {
+      background-color: white;
+      left: 50%;
+ }
+  #Resetar {
+      background-color: white;
+      left: 80%;
+ }
+  .tasks {
+      margin-top: 600px;
+ }
+  h1 {
+      font-size: 24px;
+ }
+  input[type="text"], textarea {
+      font-size: 16px;
+ }
+  button {
+      font-size: 18px;
+ }
+  .task-desc {
+      min-height: 50px;
+      max-height: 190px;
+      width: 100%;
+      max-width: 100%;
+ }
+  .task-item {
+      width: 100%;
+      height: 180px;
+      margin-top: 10px;
+      max-width: 500px;
+ }
+ .completed {
+  width: 100%;
+  height: 180px;
+  margin-top: 10px;
+  max-width: 500px;
+}
+ .task-item h2 {
+      margin-top: 10px;
+      font-size: 20px;
+}
+  .task-item p {
+      font-size: 16px;
+ }
+  .task-item button {
+      font-size: 16px;
+ }
+  .complt-button {
+      font-size: 16px;
+ }
+  .task-item button.edit-btn {
+      width: 70px;
+      height: 40px;
+      font-size: 16px;
+ }
+  .task-item button.complete-btn {
+      width: 100px;
+      height: 40px;
+      font-size: 15px;
+ }
+  footer {
+      font-size: 16px;
+ }
+ .task-add {
+  height: 80px;
+}
+.btn-adicionar{
+    width: 180px;
+    height: 70px;
+}
+.btn-adicionar h1{
+    font-size: 18px;
+}
+dialog#menu-dialog {
+  width: 400px;
+  height: 500px;
+}
+#menu-dialog .tasks {
+  height: 500px;
+  width: 400px;
+  }
+}
+/* Responsividade para dispositivos maiores que 1200px */
+@media (min-width: 1201px) {
+  .menu h1 {
+      margin-top: 10px;
+      font-size: 28px;
+ }
+  .menu h1 a {
+      font-size: 28px;
+      color: #FFFFFF;
+      margin-top: 10px;
+ }
+  .menu ul li a {
+      display: block;
+      font-size: 24px;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+      position: relative;
+ }
+  .menu ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 50%;
+      width: 0%;
+      height: 0.2rem;
+      background: crimson;
+      transition: all 300ms ease-in-out;
+ }
+  .menu ul li a:hover::after {
+      width: 50%;
+      left: 25%;
+ }
+  .relogio {
+      width: 250px;
+      height: 250px;
+      font-size: 100px;
+ }
+  .timer {
+      width: 50%;
+      height: 400px;
+ }
+  #Iniciar, #Pausar, #Resetar {
+      font-size: 20px;
+      width: 26%;
+      height: 55px;
+ }
+  .b25, .b10, .b5 {
+      width: 19%;
+      height: 50px;
+      font-size: 16px;
+ }
+ .cust {
+    width: 25%;
+    height: 50px;
+    font-size: 16px;
+}
+  .b25 {
+      margin-left: -35%;
+      font-size: 18px;
+ }
+  .b5 {
+      margin-left: -15%;
+      font-size: 18px;
+ }
+  .b10 {
+      margin-left: 5%;
+      font-size: 18px;
+ }
+  .cust {
+      margin-left: 28%;
+      font-size: 18px;
+ }
+  #Iniciar {
+      background-color: white;
+      left: 20%;
+ }
+  #Pausar {
+      background-color: white;
+      left: 50%;
+ }
+  #Resetar {
+      background-color: white;
+      left: 80%;
+ }
+  h1 {
+      font-size: 28px;
+ }
+  input[type="text"], textarea {
+      font-size: 18px;
+ }
+  button {
+      font-size: 20px;
+ }
+  .task-desc {
+      min-height: 50px;
+      max-height: 190px;
+      width: 100%;
+      max-width: 100%;
+ }
+  c
+  footer {
+      font-size: 18px;
+ }
+ .task-add {
+  height: 70px;
+}
+.task-item {
+  width: 100%;
+  height: 180px;
+  margin-top: 10px;
+  max-width: 500px;
+}
+.completed {
+  width: 100%;
+  height: 180px;
+  margin-top: 10px;
+  max-width: 500px;
+  color: #155b24;
+}
+.task-item h2 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.task-item p {
+  font-size: 16px;
+}
+.task-item button {
+  font-size: 16px;
+}
+.complt-button {
+  font-size: 16px;
+}
+.task-item button.edit-btn {
+  width: 70px;
+  height: 40px;
+  font-size: 16px;
+}
+.task-item button.complete-btn {
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+}
+.btn-adicionar{
+    width: 200px;
+    height: 70px;
+}
+.btn-adicionar h1{
+    font-size: 18px;
+}
+dialog#menu-dialog {
+  width: 450px;
+  height: 500px;
+}
+#menu-dialog .tasks {
+  height: 500px;
+  width: 450px;
+  }
+}
